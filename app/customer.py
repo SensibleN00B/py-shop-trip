@@ -70,7 +70,10 @@ class Customer:
 
     @staticmethod
     def format_float(value: float) -> str:
-        res = str(int(value)) if value.is_integer() else f"{round(value, 2)}"
+        if isinstance(value, float) and value.is_integer():
+            res = str(int(value))
+        else:
+            res = f"{round(value, 2)}"
         if res[-1] == "0":
             return res[:-1]
         return res
